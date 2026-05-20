@@ -1,0 +1,68 @@
+Class {
+	#name : 'DifAnt',
+	#superclass : 'CMAgent',
+	#classInstVars : [
+		'depositQty'
+	],
+	#category : 'Diffuse-Model',
+	#package : 'Diffuse-Model'
+}
+
+{ #category : 'accessing' }
+DifAnt class >> depositQty [
+
+	^ depositQty
+]
+
+{ #category : 'accessing' }
+DifAnt class >> depositQty: anObject [
+
+	depositQty := anObject
+]
+
+{ #category : 'initialization' }
+DifAnt class >> initializeParameters [
+
+	super initializeParameters.
+	depositQty := 150.
+]
+
+{ #category : 'control' }
+DifAnt >> depositPheromone [
+	"The ant deposites 150 units of pheromones on the ground "
+
+	self cell qty: self cell qty + self class depositQty
+]
+
+{ #category : 'accessing' }
+DifAnt >> pov [
+
+	<pov>
+	^ (CMPointOfView shape: #star size: 0.8) color: Color red;
+		  yourself
+]
+
+{ #category : 'control' }
+DifAnt >> step [
+	" the ant moves randomly and deposits pheromone."
+
+	self randomWalk: 2.
+	self depositPheromone
+]
+
+{ #category : 'control' }
+DifAnt >> stepJump [
+	" the ant moves randomly and deposits pheromone. But if the hormone qty is too elevated, it jumps randomly"
+
+	self strongSmell
+		ifTrue: [ self randomJump ]
+		ifFalse: [ self randomWalk: 2 ].
+	self depositPheromone
+]
+
+{ #category : 'testing' }
+DifAnt >> strongSmell [
+	"answer if the local pheromones are too strong (over 100 units)"
+
+	^ self cell qty > 100
+]
