@@ -24,7 +24,7 @@ DifAnt class >> depositQty: anObject [
 DifAnt >> depositPheromone [
 	"The ant deposites 150 units of pheromones on the ground "
 
-	self cell qty: self cell qty + self class depositQty
+	self cell quantity: self cell quantity + self class depositQty
 ]
 
 { #category : 'accessing' }
@@ -57,5 +57,5 @@ DifAnt >> stepJump [
 DifAnt >> strongSmell [
 	"answer if the local pheromones are too strong (over 100 units)"
 
-	^ self cell qty > 100
+	^ self cell quantity > 100
 ]

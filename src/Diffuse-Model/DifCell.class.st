@@ -2,8 +2,8 @@ Class {
 	#name : 'DifCell',
 	#superclass : 'CMCell',
 	#instVars : [
-		'qty',
-		'lostOrReceivedQty'
+		'quantity',
+		'lostOrReceivedQuantity'
 	],
 	#classInstVars : [
 		'minimunQty',
@@ -53,26 +53,28 @@ DifCell class >> minimunQty: anObject [
 { #category : 'control' }
 DifCell >> diffuse [
 	"Diffusion of hormons around the cell.
-Each neighbours will receive a quantity equals to qty*diffusionRate/connexity.
-diffusionRate is the % of hormon I should give to my neigbourhood.
-If I am at the edge, I will give less hormons"
+	Each neighbours will receive a quantity equals to qty*diffusionRate/connexity.
+	diffusionRate is the % of hormon I should give to my neigbourhood.
+	If I am at the edge, I will give less hormons"
 	
-	| qtyToGiveToEachCell givenQty |
-	self qty > 0
-		ifTrue:
-			[qtyToGiveToEachCell := self qty * self class diffusionRate / self neighbourhood size.
-			givenQty := 0.
-			self neighbourhood do:
-					[: neigh | givenQty := givenQty + qtyToGiveToEachCell.
-					neigh lostOrReceivedQty: neigh lostOrReceivedQty + qtyToGiveToEachCell].
-			self lostOrReceivedQty: self lostOrReceivedQty - givenQty]
+	| quantityToGiveToEachCell givenQuantity |
+	self quantity > 0 ifFalse: [ ^ self ].
+	
+	quantityToGiveToEachCell := self quantity * self class diffusionRate / self neighbourhood size.
+	givenQuantity := 0.
+	
+	self neighbourhood do: [ :neighbour |
+		givenQuantity := givenQuantity + quantityToGiveToEachCell.
+		neighbour lostOrReceivedQuantity: neighbour lostOrReceivedQuantity + quantityToGiveToEachCell ].
+	
+	self lostOrReceivedQuantity: self lostOrReceivedQuantity - givenQuantity
 	
 ]
 
 { #category : 'control' }
 DifCell >> evaporate [
-"A part of the hormon evaporates"
-	self qty: ((self qty - (self qty * self class evaporationRate)) max: 0 )
+	"A part of the hormon evaporates"
+	self quantity: ((self quantity - (self quantity * self class evaporationRate)) max: 0)
 
 	
 ]
@@ -81,20 +83,20 @@ DifCell >> evaporate [
 DifCell >> initialize [
 
 	super initialize.
-	qty := 0.
-	lostOrReceivedQty := 0
+	quantity := 0.
+	lostOrReceivedQuantity := 0
 ]
 
 { #category : 'accessing' }
-DifCell >> lostOrReceivedQty [
+DifCell >> lostOrReceivedQuantity [
 
-	^ lostOrReceivedQty
+	^ lostOrReceivedQuantity
 ]
 
 { #category : 'accessing' }
-DifCell >> lostOrReceivedQty: aQty [
+DifCell >> lostOrReceivedQuantity: aQty [
 
-	lostOrReceivedQty := aQty
+	lostOrReceivedQuantity := aQty
 ]
 
 { #category : 'as yet unclassified' }
@@ -102,32 +104,33 @@ DifCell >> povHormones [
 
 	<pov>
 	^ CMPointOfView color: (self
-			   colorAttribute: #qty
-			   min: 0
-			   max: 100
-			   color: Color green)
+		colorAttribute: #quantity
+		min: 0
+		max: 100
+		color: Color green)
 ]
 
 { #category : 'accessing' }
-DifCell >> qty [
+DifCell >> quantity [
 
-	^ qty
+	^ quantity
 ]
 
 { #category : 'accessing' }
-DifCell >> qty: aNumber [
+DifCell >> quantity: aNumber [
 
-	qty := aNumber
+	quantity := aNumber
 ]
 
 { #category : 'control' }
-DifCell >> updateQty [
-"lostOrReceivedQty is the buffer state for synchronous diffusion"
-	self lostOrReceivedQty ~= 0 
-		ifTrue: 
-			[self qty: (self qty + self lostOrReceivedQty) asFloat.
-			self lostOrReceivedQty: 0.
-			self qty < self class minimunQty ifTrue: [self qty: 0]]
+DifCell >> updateQuantity [
+	"lostOrReceivedQuantity is the buffer state for synchronous diffusion"
+	self lostOrReceivedQuantity = 0 ifTrue: [ ^ self ].
+	
+	self quantity: (self quantity + self lostOrReceivedQuantity) asFloat.
+	self lostOrReceivedQuantity: 0.
+	
+	self quantity < self class minimunQty ifTrue: [ self quantity: 0 ]
 
 	
 ]
