@@ -10,7 +10,7 @@ Class {
 
 { #category : 'accessing' }
 DifAnt class >> depositQty [
-
+	<parameterIntegerMin: 0 max: 300 default: 150>
 	^ depositQty
 ]
 
@@ -18,13 +18,6 @@ DifAnt class >> depositQty [
 DifAnt class >> depositQty: anObject [
 
 	depositQty := anObject
-]
-
-{ #category : 'initialization' }
-DifAnt class >> initializeParameters [
-
-	super initializeParameters.
-	depositQty := 150.
 ]
 
 { #category : 'control' }

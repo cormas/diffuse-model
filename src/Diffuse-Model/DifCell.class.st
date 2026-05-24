@@ -16,7 +16,7 @@ Class {
 
 { #category : 'accessing' }
 DifCell class >> diffusionRate [
-
+	<parameterFloatMin: 0 max: 1 default: 0.5>
 	^ diffusionRate
 ]
 
@@ -28,7 +28,7 @@ DifCell class >> diffusionRate: anObject [
 
 { #category : 'accessing' }
 DifCell class >> evaporationRate [
-
+	<parameterFloatMin: 0 max: 1 default: 0.1>
 	^ evaporationRate
 ]
 
@@ -38,19 +38,9 @@ DifCell class >> evaporationRate: anObject [
 	evaporationRate := anObject
 ]
 
-{ #category : 'initialization' }
-DifCell class >> initializeParameters [
-
-	super initializeParameters.
-
-	minimunQty := 1.
-	diffusionRate := 0.5.
-	evaporationRate := 0.1
-]
-
 { #category : 'accessing' }
 DifCell class >> minimunQty [
-
+	<parameterFloatMin: 0 max: 10 default: 1>
 	^ minimunQty
 ]
 

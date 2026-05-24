@@ -26,16 +26,16 @@ There are two types of entities:
 '
 ]
 
-{ #category : 'accessing' }
+{ #category : 'parameters' }
 DifModel class >> antsNumber [
+	<parameterIntegerMin: 0 max: 100 default: 3>
 	^ antsNumber
 ]
 
-{ #category : 'accessing' }
-DifModel class >> initializeParameters [
-
-	super initializeParameters.
-	antsNumber := 3
+{ #category : 'parameters' }
+DifModel class >> antsNumber: aNumber [
+	
+	antsNumber := aNumber 
 ]
 
 { #category : 'accessing' }
