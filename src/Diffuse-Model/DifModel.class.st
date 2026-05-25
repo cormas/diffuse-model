@@ -66,7 +66,7 @@ DifModel >> init [
 { #category : 'accessing' }
 DifModel >> numberOfAnts [
 	<parameterIntegerMin: 0 max: 100 default: 3>
-	numberOfAnts
+	^ numberOfAnts
 ]
 
 { #category : 'accessing' }
