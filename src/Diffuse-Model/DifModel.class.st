@@ -1,6 +1,6 @@
 Class {
 	#name : 'DifModel',
-	#superclass : 'CMAbstractModel',
+	#superclass : 'CMModel',
 	#instVars : [
 		'numberOfAnts'
 	],
@@ -73,6 +73,22 @@ DifModel >> numberOfAnts [
 DifModel >> numberOfAnts: aNumber [
 	
 	numberOfAnts := aNumber
+]
+
+{ #category : 'control' }
+DifModel >> stepSynchronous [
+	"This method will be executed at every step of the simulation"
+
+	"diffusion of pheromoes (evaporation and synchronous diffusion), then activities of the ants"
+
+	<control>
+	self cells do: [ :a |
+			a evaporate.
+			a diffuse ].
+	self cells do: [ :a | a updateQuantity ].
+	
+	"activities of the ants"
+	self ants do: [ :a | a step ]
 ]
 
 { #category : 'control' }
