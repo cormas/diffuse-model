@@ -2,7 +2,9 @@ Class {
 	#name : 'DifModel',
 	#superclass : 'CMModel',
 	#instVars : [
-		'numberOfAnts'
+		'numberOfAnts',
+		'numberOfRows',
+		'numberOfColumns'
 	],
 	#classInstVars : [
 		'antsNumber'
@@ -52,8 +54,8 @@ DifModel >> init [
 
 	<init>
 	self
-		createGridNumberOfRows: 40
-		numberOfColumns: 40
+		createGridNumberOfRows: numberOfRows 
+		numberOfColumns: numberOfColumns 
 		neighbourhood: 4
 		closed: true.
 
@@ -73,6 +75,30 @@ DifModel >> numberOfAnts [
 DifModel >> numberOfAnts: aNumber [
 	
 	numberOfAnts := aNumber
+]
+
+{ #category : 'accessing' }
+DifModel >> numberOfColumns [
+	<parameterIntegerMin: 1 max: 200 default: 40>
+	^ numberOfColumns
+]
+
+{ #category : 'accessing' }
+DifModel >> numberOfColumns: anObject [
+
+	numberOfColumns := anObject
+]
+
+{ #category : 'accessing' }
+DifModel >> numberOfRows [
+	<parameterIntegerMin: 1 max: 200 default: 40>
+	^ numberOfRows
+]
+
+{ #category : 'accessing' }
+DifModel >> numberOfRows: anObject [
+
+	numberOfRows := anObject
 ]
 
 { #category : 'control' }
