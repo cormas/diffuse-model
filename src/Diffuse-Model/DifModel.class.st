@@ -54,12 +54,12 @@ DifModel >> init [
 
 	<init>
 	self
-		createGridNumberOfRows: numberOfRows 
-		numberOfColumns: numberOfColumns 
+		createGridNumberOfRows: numberOfRows
+		numberOfColumns: numberOfColumns
 		neighbourhood: 4
 		closed: true.
 
-	self createN: numberOfAnts randomlyLocatedEntities: DifAnt.
+	self create: numberOfAnts randomlyLocatedEntitiesOfClass: DifAnt.
 
 	DifCell activePovSelector: #povHormones.
 	DifAnt activePovSelector: #pov
