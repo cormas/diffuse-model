@@ -103,8 +103,8 @@ DifCell >> lostOrReceivedQuantity: aQty [
 DifCell >> povHormones [
 
 	<pov>
-	^ CMPointOfView color: (self
-		colorAttribute: #quantity
+	^ CMPointOfView color: (CMColor
+		colorValue: quantity
 		min: 0
 		max: 100
 		color: Color green)
