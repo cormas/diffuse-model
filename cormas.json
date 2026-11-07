@@ -1,0 +1,5 @@
+{
+	"baseline" : "Diffuse",
+	"summary" : "Ants move at random and deposit pheromones on the ground, while the pheromones diffuse to the neighbouring cells and evaporate.",
+	"cormas" : "1.0-dev"
+}
