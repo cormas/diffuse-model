@@ -50,6 +50,12 @@ DifCell class >> minimunQty: anObject [
 	minimunQty := anObject
 ]
 
+{ #category : 'aspects' }
+DifCell >> aspectDefault: look [
+	<aspect>
+	look colorShadeOf: Color green forValue: quantity from: 0 to: 100
+]
+
 { #category : 'control' }
 DifCell >> diffuse [
 	"Diffusion of hormons around the cell.

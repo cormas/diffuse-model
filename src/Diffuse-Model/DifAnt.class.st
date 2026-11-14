@@ -20,6 +20,16 @@ DifAnt class >> depositQty: anObject [
 	depositQty := anObject
 ]
 
+{ #category : 'aspects' }
+DifAnt >> aspectDefault: look [
+
+	<aspect>
+	look
+		color: Color red;
+		shape: #star;
+		size: 0.8
+]
+
 { #category : 'control' }
 DifAnt >> depositPheromone [
 	"The ant deposites 150 units of pheromones on the ground "

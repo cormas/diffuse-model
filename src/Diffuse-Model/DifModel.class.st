@@ -58,11 +58,7 @@ DifModel >> init [
 		numberOfColumns: numberOfColumns
 		neighbourhood: 4
 		closed: true.
-
-	self create: numberOfAnts randomlyLocatedEntitiesOfClass: DifAnt.
-
-	DifCell activePovSelector: #povHormones.
-	DifAnt activePovSelector: #pov
+	self create: numberOfAnts randomlyLocatedEntitiesOfClass: DifAnt
 ]
 
 { #category : 'accessing' }
