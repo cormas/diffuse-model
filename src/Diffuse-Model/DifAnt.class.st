@@ -37,14 +37,6 @@ DifAnt >> depositPheromone [
 	self cell quantity: self cell quantity + self class depositQty
 ]
 
-{ #category : 'accessing' }
-DifAnt >> pov [
-
-	<pov>
-	^ (CMPointOfView shape: #star size: 0.8) color: Color red;
-		  yourself
-]
-
 { #category : 'control' }
 DifAnt >> step [
 	" the ant moves randomly and deposits pheromone."

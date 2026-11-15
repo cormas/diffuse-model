@@ -105,17 +105,6 @@ DifCell >> lostOrReceivedQuantity: aQty [
 	lostOrReceivedQuantity := aQty
 ]
 
-{ #category : 'pov' }
-DifCell >> povHormones [
-
-	<pov>
-	^ CMPointOfView color: (CMColor
-		colorValue: quantity
-		min: 0
-		max: 100
-		color: Color green)
-]
-
 { #category : 'accessing' }
 DifCell >> quantity [
 
